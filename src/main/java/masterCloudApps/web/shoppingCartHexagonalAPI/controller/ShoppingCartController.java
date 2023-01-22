@@ -1,6 +1,7 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.controller;
 
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.ShoppingCartDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.ShoppingCartRequestDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.response.ShoppingCartResponseDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.service.ShoppingCartService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class ShoppingCartController {
         this.shoppingCartService.finishShoppingCart(id);
      }
      @GetMapping("/{id}")
-     public ShoppingCartDto getShoppingCartById(@PathVariable Long id) {
+     public ShoppingCartResponseDto getShoppingCartById(@PathVariable Long id) {
         return this.shoppingCartService.getShoppingCartById(id);
      }
      @DeleteMapping("/{id}")

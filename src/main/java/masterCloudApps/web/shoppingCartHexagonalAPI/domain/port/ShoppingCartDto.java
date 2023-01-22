@@ -1,27 +1,20 @@
-package masterCloudApps.web.shoppingCartHexagonalAPI.domain;
+package masterCloudApps.web.shoppingCartHexagonalAPI.domain.port;
+
+import masterCloudApps.web.shoppingCartHexagonalAPI.domain.Product;
+import masterCloudApps.web.shoppingCartHexagonalAPI.domain.ShoppingCartState;
 
 import java.util.List;
 
-public class ShoppingCart {
-    private Long id;
+public class ShoppingCartDto {
     private List<Product> productList;
     private ShoppingCartState shoppingCartState;
 
-    public ShoppingCart() {
+    public ShoppingCartDto() {
     }
 
-    public ShoppingCart(Long id, List<Product> productList, ShoppingCartState shoppingCartState) {
-        this.id = id;
+    public ShoppingCartDto(List<Product> productList, ShoppingCartState shoppingCartState) {
         this.productList = productList;
         this.shoppingCartState = shoppingCartState;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public List<Product> getProductList() {
@@ -38,13 +31,5 @@ public class ShoppingCart {
 
     public void setShoppingCartState(ShoppingCartState shoppingCartState) {
         this.shoppingCartState = shoppingCartState;
-    }
-
-    public void addProduct(Product product) {
-        this.productList.add(product);
-    }
-
-    public void removeProduct(Product product) {
-        this.productList.remove(product);
     }
 }

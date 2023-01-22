@@ -1,12 +1,15 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.service;
 
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.ProductDto;
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.StockDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.ProductRequestDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.StockRequestDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.response.ProductResponseDto;
+
+import java.util.List;
 
 public interface ProductService {
-    ProductDto getProducts();
-    void addProduct(ProductDto productDto, StockDto stockDto);
+    List<ProductResponseDto> getProducts();
+    void addProduct(ProductRequestDto productRequestDto);
     void changeStock(Long id, int quantity);
-    ProductDto getProductById(Long id);
+    ProductResponseDto getProductById(Long id);
     void deleteProductById(Long id);
 }

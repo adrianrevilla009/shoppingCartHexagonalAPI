@@ -1,9 +1,12 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.controller;
 
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.ProductDto;
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.StockDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.ProductRequestDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.StockRequestDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.response.ProductResponseDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.service.ProductService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -16,19 +19,19 @@ public class ProductController {
     }
 
     @GetMapping("/")
-    public ProductDto getProducts() {
+    public List<ProductResponseDto> getProducts() {
         return this.productService.getProducts();
     }
     @PostMapping("/")
-    public void addProduct(ProductDto productDto, StockDto stockDto) {
-        this.productService.addProduct(productDto, stockDto);
+    public void addProduct(ProductRequestDto productRequestDto) {
+        this.productService.addProduct(productRequestDto);
     }
     @PutMapping("/{id}/stock/{quantity}")
     public void changeStock(@PathVariable Long id, @PathVariable int quantity) {
         this.productService.changeStock(id, quantity);
     }
     @GetMapping("/{id}")
-    public ProductDto getProductById(@PathVariable Long id) {
+    public ProductResponseDto getProductById(@PathVariable Long id) {
         return this.productService.getProductById(id);
     }
     @DeleteMapping("/{id}")
