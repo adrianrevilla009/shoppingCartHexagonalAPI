@@ -1,8 +1,6 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.model;
 
 import jakarta.persistence.*;
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.ShoppingCart;
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.Stock;
 
 @Entity
 @Table(name = "products")
@@ -72,5 +70,13 @@ public class ProductEntity {
 
     public void setStock(StockEntity stock) {
         this.stock = stock;
+    }
+
+    public void setQuantity(int quantity) {
+        this.stock.setQuantity(quantity);
+    }
+
+    public int getQuantity() {
+        return this.stock.getQuantity();
     }
 }

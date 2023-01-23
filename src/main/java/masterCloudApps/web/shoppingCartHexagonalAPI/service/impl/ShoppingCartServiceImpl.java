@@ -1,10 +1,9 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.service.impl;
 
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ShoppingCartUseCase;
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.ShoppingCartRequestDto;
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.response.ShoppingCartResponseDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.service.ShoppingCartService;
 import masterCloudApps.web.shoppingCartHexagonalAPI.service.ValidationService;
+import masterCloudApps.web.shoppingCartHexagonalAPI.dto.response.ShoppingCartResponseDto;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 

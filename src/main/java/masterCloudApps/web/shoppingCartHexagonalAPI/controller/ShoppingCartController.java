@@ -1,6 +1,5 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.controller;
 
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.ShoppingCartRequestDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.dto.response.ShoppingCartResponseDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.service.ShoppingCartService;
 import org.springframework.web.bind.annotation.*;

@@ -38,8 +38,9 @@ public class ShoppingCartHexagonalApiApplication {
 	}
 
 	@Bean
-	public ShoppingCartRepository shoppingCartRepository(ShoppingCartJpaRepository shoppingCartJpaRepository, Mapper mapper) {
-		return new ShoppingCartRepositoryAdapter(shoppingCartJpaRepository, mapper);
+	public ShoppingCartRepository shoppingCartRepository(ShoppingCartJpaRepository shoppingCartJpaRepository, Mapper mapper,
+														 ProductJpaRepository productJpaRepository) {
+		return new ShoppingCartRepositoryAdapter(shoppingCartJpaRepository, mapper, productJpaRepository);
 	}
 
 	@Bean

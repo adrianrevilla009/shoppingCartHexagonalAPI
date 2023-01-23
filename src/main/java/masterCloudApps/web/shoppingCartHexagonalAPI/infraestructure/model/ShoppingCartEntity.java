@@ -66,7 +66,7 @@ public class ShoppingCartEntity {
         return productEntity;
     }
 
-    public void deleteProduct(Long prod_id) {
+    public ProductEntity deleteProduct(Long prod_id) {
         ProductEntity productToRemove = null;
         for (ProductEntity product : this.productList) {
             if (product.getId() == prod_id) {
@@ -76,5 +76,10 @@ public class ShoppingCartEntity {
         if (productToRemove != null) {
             this.productList.remove(productToRemove);
         }
+        return productToRemove;
+    }
+
+    public void addProduct(ProductEntity product) {
+        this.productList.add(product);
     }
 }

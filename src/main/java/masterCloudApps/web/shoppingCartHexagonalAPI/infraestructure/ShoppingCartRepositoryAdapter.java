@@ -2,10 +2,12 @@ package masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure;
 
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.ShoppingCartState;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.FullShoppingCartDto;
+import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductRepository;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ShoppingCartDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ShoppingCartRepository;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.model.ProductEntity;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.model.ShoppingCartEntity;
+import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.repository.ProductJpaRepository;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.repository.ShoppingCartJpaRepository;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Component;
@@ -17,9 +19,13 @@ public class ShoppingCartRepositoryAdapter implements ShoppingCartRepository {
     private ShoppingCartJpaRepository shoppingCartJpaRepository;
     private Mapper mapper;
 
-    public ShoppingCartRepositoryAdapter(ShoppingCartJpaRepository shoppingCartJpaRepository, Mapper mapper) {
+    private ProductJpaRepository productJpaRepository;
+
+    public ShoppingCartRepositoryAdapter(ShoppingCartJpaRepository shoppingCartJpaRepository, Mapper mapper,
+                                         ProductJpaRepository productJpaRepository) {
         this.shoppingCartJpaRepository = shoppingCartJpaRepository;
         this.mapper = mapper;
+        this.productJpaRepository = productJpaRepository;
     }
 
     @Override
@@ -56,11 +62,26 @@ public class ShoppingCartRepositoryAdapter implements ShoppingCartRepository {
         Optional<ShoppingCartEntity> shoppingCart = this.shoppingCartJpaRepository.findById(cart_id);
         shoppingCart.orElseThrow();
 
-        ProductEntity product = shoppingCart.get().getProductById(prod_id);
-        if (product != null) {
-            product.getStock().setQuantity(prod_quantity);
+        ProductEntity inCartProduct = shoppingCart.get().getProductById(prod_id);
+        if (inCartProduct != null) {
+            // if product already exists in cart
+            inCartProduct.getStock().setQuantity(prod_quantity);
+        } else {
+            // if product does not exist in cart
+            Optional<ProductEntity> savedProduct = this.productJpaRepository.findById(prod_id);
+            savedProduct.orElseThrow();
+
+            savedProduct.get().setQuantity(prod_quantity);
+            shoppingCart.get().addProduct(savedProduct.get());
         }
         this.shoppingCartJpaRepository.save(shoppingCart.get());
+
+        // reduce product remaining stock
+        Optional<ProductEntity> reducingQuantityProduct = this.productJpaRepository.findById(prod_id);
+        reducingQuantityProduct.orElseThrow();
+
+        reducingQuantityProduct.get().setQuantity(reducingQuantityProduct.get().getQuantity() - prod_quantity);
+        this.productJpaRepository.save(reducingQuantityProduct.get());
     }
 
     @Override
@@ -68,7 +89,14 @@ public class ShoppingCartRepositoryAdapter implements ShoppingCartRepository {
         Optional<ShoppingCartEntity> shoppingCart = this.shoppingCartJpaRepository.findById(cart_id);
         shoppingCart.orElseThrow();
 
-        shoppingCart.get().deleteProduct(prod_id);
+        ProductEntity removedProduct = shoppingCart.get().deleteProduct(prod_id);
         this.shoppingCartJpaRepository.save(shoppingCart.get());
+
+        // increase product remaining stock
+        Optional<ProductEntity> increasingQuantityProduct = this.productJpaRepository.findById(prod_id);
+        increasingQuantityProduct.orElseThrow();
+
+        increasingQuantityProduct.get().setQuantity(increasingQuantityProduct.get().getQuantity() + removedProduct.getQuantity());
+        this.productJpaRepository.save(increasingQuantityProduct.get());
     }
 }

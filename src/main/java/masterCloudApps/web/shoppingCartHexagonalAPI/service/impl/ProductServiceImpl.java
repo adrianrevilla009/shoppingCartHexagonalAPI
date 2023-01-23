@@ -1,10 +1,8 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.service.impl;
 
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.FullProductDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductUseCase;
 import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.ProductRequestDto;
-import masterCloudApps.web.shoppingCartHexagonalAPI.dto.request.StockRequestDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.dto.response.ProductResponseDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.service.ProductService;
 import org.dozer.Mapper;

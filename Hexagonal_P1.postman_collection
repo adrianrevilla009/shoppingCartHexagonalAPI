@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"P1\",\r\n    \"brand\": \"B1\",\r\n    \"stock\": {\r\n        \"quantity\": \"C1\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"name\": \"P1\",\r\n    \"brand\": \"B1\",\r\n    \"stock\": {\r\n        \"quantity\": 200\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
