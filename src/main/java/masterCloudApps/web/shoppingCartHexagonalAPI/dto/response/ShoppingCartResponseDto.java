@@ -1,12 +1,10 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.dto.response;
 
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.Product;
-
 import java.util.List;
 
 public class ShoppingCartResponseDto {
     private Long id;
-    private List<Product> productList;
+    private List<ProductResponseDto> productList;
 
     public Long getId() {
         return id;
@@ -16,11 +14,11 @@ public class ShoppingCartResponseDto {
         this.id = id;
     }
 
-    public List<Product> getProductList() {
+    public List<ProductResponseDto> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
+    public void setProductList(List<ProductResponseDto> productList) {
         this.productList = productList;
     }
 }

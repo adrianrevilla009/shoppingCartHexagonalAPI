@@ -1,5 +1,5 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.service;
 
 public interface ValidationService {
-    boolean checkProductStockAvailable(Long id);
+    boolean checkProductStockAvailable(Long id, int quantity);
 }

@@ -1,6 +1,7 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.data;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.ShoppingCartState;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.FullProductDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductRepository;
@@ -9,13 +10,16 @@ import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ShoppingCartRepo
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.model.ProductEntity;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.model.ShoppingCartEntity;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.model.StockEntity;
+import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.repository.ShoppingCartJpaRepository;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 // TODO this class has to be injected to get triggered?
 @Component
@@ -35,15 +39,16 @@ public class DataInitializer {
     }
 
     @PostConstruct
+    @Transactional
     public void init() {
         logger.info("INITIALIZING H2 DB DATA");
 
         ProductEntity milkProduct = new ProductEntity("Milk", "Brand 1");
-        StockEntity milkStock = new StockEntity(milkProduct, 20);
+        StockEntity milkStock = new StockEntity(20);
         milkProduct.setStock(milkStock);
 
         ProductEntity cookieProduct = new ProductEntity("Cookie", "Brand 2");
-        StockEntity cookieStock = new StockEntity(cookieProduct, 50);
+        StockEntity cookieStock = new StockEntity(50);
         cookieProduct.setStock(cookieStock);
 
         ShoppingCartEntity shoppingCart1 = new ShoppingCartEntity(
@@ -54,7 +59,9 @@ public class DataInitializer {
         this.productRepository.addProduct(this.mapper.map(milkProduct, FullProductDto.class));
         this.productRepository.addProduct(this.mapper.map(cookieProduct, FullProductDto.class));
 
-/*        this.shoppingCartRepository.createShoppingCart(this.mapper.map(shoppingCart1, ShoppingCartDto.class));
-        this.shoppingCartRepository.createShoppingCart(this.mapper.map(shoppingCart2, ShoppingCartDto.class));*/
+        this.shoppingCartRepository.createShoppingCart(this.mapper.map(shoppingCart1, ShoppingCartDto.class));
+        this.shoppingCartRepository.createShoppingCart(this.mapper.map(shoppingCart2, ShoppingCartDto.class));
+
+        logger.info("INITIALIZED H2 DB DATA");
     }
 }

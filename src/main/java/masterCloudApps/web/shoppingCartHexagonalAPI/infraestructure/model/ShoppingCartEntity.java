@@ -13,7 +13,7 @@ public class ShoppingCartEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shoppingCart", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "shoppingCart")
     private List<ProductEntity> productList;
     @Column(nullable = false)
     private ShoppingCartState shoppingCartState;

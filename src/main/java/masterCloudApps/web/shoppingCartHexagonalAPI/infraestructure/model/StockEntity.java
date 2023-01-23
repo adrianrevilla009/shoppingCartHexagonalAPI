@@ -18,8 +18,7 @@ public class StockEntity {
     public StockEntity() {
     }
 
-    public StockEntity(ProductEntity product, int quantity) {
-        this.product = product;
+    public StockEntity(int quantity) {
         this.quantity = quantity;
     }
 

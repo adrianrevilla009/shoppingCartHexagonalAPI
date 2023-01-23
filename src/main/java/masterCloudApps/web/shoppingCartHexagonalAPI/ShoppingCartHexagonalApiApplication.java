@@ -2,10 +2,8 @@ package masterCloudApps.web.shoppingCartHexagonalAPI;
 
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.ProductUseCaseImpl;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.ShoppingCartUseCaseImpl;
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductRepository;
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductUseCase;
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ShoppingCartRepository;
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ShoppingCartUseCase;
+import masterCloudApps.web.shoppingCartHexagonalAPI.domain.ValidationUseCaseImpl;
+import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.*;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.ProductRepositoryAdapter;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.ShoppingCartRepositoryAdapter;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.repository.ProductJpaRepository;
@@ -47,6 +45,11 @@ public class ShoppingCartHexagonalApiApplication {
 	@Bean
 	public ShoppingCartUseCase shoppingCartUseCase(ShoppingCartRepository shoppingCartRepository) {
 		return new ShoppingCartUseCaseImpl(shoppingCartRepository);
+	}
+
+	@Bean
+	public ValidationUseCase validationUseCase(ProductRepository productRepository) {
+		return new ValidationUseCaseImpl(productRepository);
 	}
 
 

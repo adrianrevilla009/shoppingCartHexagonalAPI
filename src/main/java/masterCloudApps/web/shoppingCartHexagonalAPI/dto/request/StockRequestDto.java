@@ -1,8 +1,13 @@
 package masterCloudApps.web.shoppingCartHexagonalAPI.dto.request;
 
-import masterCloudApps.web.shoppingCartHexagonalAPI.domain.Product;
-
 public class StockRequestDto {
-    private Product product;
     private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

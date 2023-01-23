@@ -46,7 +46,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void addProductToShoppingCart(Long cart_id, Long prod_id, int prod_quantity) {
-        Boolean available = this.validationService.checkProductStockAvailable(prod_id);
+        Boolean available = this.validationService.checkProductStockAvailable(prod_id, prod_quantity);
         if (available) {
             this.shoppingCartUseCase.addProductToShoppingCart(cart_id, prod_id, prod_quantity);
         }
