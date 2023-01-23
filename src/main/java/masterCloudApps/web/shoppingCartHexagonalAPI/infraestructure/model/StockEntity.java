@@ -9,16 +9,21 @@ public class StockEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    @OneToOne(cascade = CascadeType.ALL)
-    private Product product;
+
+    @OneToOne(mappedBy = "stock")
+    private ProductEntity product;
     @Column(nullable = false)
     private int quantity;
 
     public StockEntity() {
     }
 
-    public StockEntity(Long id, Product product, int quantity) {
+    public StockEntity(ProductEntity product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    public StockEntity(Long id, ProductEntity product, int quantity) {
         this.id = id;
         this.product = product;
         this.quantity = quantity;
@@ -32,11 +37,11 @@ public class StockEntity {
         this.id = id;
     }
 
-    public Product getProduct() {
+    public ProductEntity getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductEntity product) {
         this.product = product;
     }
 

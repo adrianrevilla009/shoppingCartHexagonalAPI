@@ -9,6 +9,11 @@ import java.util.ArrayList;
 
 public class ShoppingCartUseCaseImpl implements ShoppingCartUseCase {
     private ShoppingCartRepository shoppingCartRepository;
+
+    public ShoppingCartUseCaseImpl(ShoppingCartRepository shoppingCartRepository) {
+        this.shoppingCartRepository = shoppingCartRepository;
+    }
+
     @Override
     public void createShoppingCart() {
         this.shoppingCartRepository.createShoppingCart(new ShoppingCartDto(

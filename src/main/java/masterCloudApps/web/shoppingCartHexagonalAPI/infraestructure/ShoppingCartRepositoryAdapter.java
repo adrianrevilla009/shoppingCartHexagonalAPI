@@ -8,9 +8,11 @@ import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.model.Produc
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.model.ShoppingCartEntity;
 import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.repository.ShoppingCartJpaRepository;
 import org.dozer.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class ShoppingCartRepositoryAdapter implements ShoppingCartRepository {
     private ShoppingCartJpaRepository shoppingCartJpaRepository;
     private Mapper mapper;

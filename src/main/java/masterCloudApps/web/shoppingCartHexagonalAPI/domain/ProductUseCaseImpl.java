@@ -4,7 +4,6 @@ import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.FullProductDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductDto;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductRepository;
 import masterCloudApps.web.shoppingCartHexagonalAPI.domain.port.ProductUseCase;
-import masterCloudApps.web.shoppingCartHexagonalAPI.infraestructure.repository.ProductJpaRepository;
 
 import java.util.List;
 

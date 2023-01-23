@@ -21,6 +21,11 @@ public class ShoppingCartEntity {
     public ShoppingCartEntity() {
     }
 
+    public ShoppingCartEntity(List<ProductEntity> productList, ShoppingCartState shoppingCartState) {
+        this.productList = productList;
+        this.shoppingCartState = shoppingCartState;
+    }
+
     public ShoppingCartEntity(Long id, List<ProductEntity> productList, ShoppingCartState shoppingCartState) {
         this.id = id;
         this.productList = productList;

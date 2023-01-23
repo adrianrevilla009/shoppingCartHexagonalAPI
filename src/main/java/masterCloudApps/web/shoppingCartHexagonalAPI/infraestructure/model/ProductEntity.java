@@ -15,12 +15,24 @@ public class ProductEntity {
     @Column(nullable = false)
     private String brand;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stock_id", referencedColumnName = "id")
     private StockEntity stock;
 
     @ManyToOne
     private ShoppingCartEntity shoppingCart;
 
     public ProductEntity() {
+    }
+
+    public ProductEntity(String name, String brand) {
+        this.name = name;
+        this.brand = brand;
+    }
+
+    public ProductEntity(Long id, String name, String brand) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
     }
 
     public ProductEntity(Long id, String name, String brand, StockEntity stock) {

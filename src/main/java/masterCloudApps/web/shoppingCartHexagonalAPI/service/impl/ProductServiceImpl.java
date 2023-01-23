@@ -19,6 +19,12 @@ public class ProductServiceImpl implements ProductService {
     private Mapper mapper;
 
     private ProductUseCase productUseCase;
+
+    public ProductServiceImpl(Mapper mapper, ProductUseCase productUseCase) {
+        this.mapper = mapper;
+        this.productUseCase = productUseCase;
+    }
+
     @Override
     public List<ProductResponseDto> getProducts() {
         return this.productUseCase.getProducts().stream()
