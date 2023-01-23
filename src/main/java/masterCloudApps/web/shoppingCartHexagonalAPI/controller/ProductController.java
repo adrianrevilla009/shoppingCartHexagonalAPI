@@ -21,8 +21,9 @@ public class ProductController {
     public List<ProductResponseDto> getProducts() {
         return this.productService.getProducts();
     }
+
     @PostMapping("/")
-    public void addProduct(ProductRequestDto productRequestDto) {
+    public void addProduct(@RequestBody ProductRequestDto productRequestDto) {
         this.productService.addProduct(productRequestDto);
     }
     @PutMapping("/{id}/stock/{quantity}")

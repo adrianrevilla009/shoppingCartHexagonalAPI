@@ -6,14 +6,14 @@ import masterCloudApps.web.shoppingCartHexagonalAPI.domain.ShoppingCartState;
 import java.util.List;
 
 public class ShoppingCartRequestDto {
-    private List<Product> productList;
+    private List<ProductRequestDto> productList;
     private ShoppingCartState shoppingCartState;
 
-    public List<Product> getProductList() {
+    public List<ProductRequestDto> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
+    public void setProductList(List<ProductRequestDto> productList) {
         this.productList = productList;
     }
 
